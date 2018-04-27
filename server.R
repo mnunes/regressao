@@ -25,7 +25,8 @@ function(input, output) {
   
   # ajusta o modelo aos dados keep
   model <- reactive({
-    keep    <- data[ vals$keeprows, , drop = FALSE]
+    keep           <- data[ vals$keeprows, , drop = FALSE]
+    rownames(keep) <- 1:nrow(keep)
     lm(y ~ x, data = keep)
   })
   
@@ -44,6 +45,14 @@ function(input, output) {
   observeEvent(input$exclude_reset, {
     vals$keeprows <- rep(FALSE, nrow(data))
   })
-
+  
+  # graficos de diagnostico
+  output$plot2 <- renderPlot({
+    
+    # grafico de dignostico
+    autoplot(model()) +
+      theme_bw()
+    
+  })
   
 }

@@ -2,10 +2,14 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 library(knitr)
+library(ggfortify)
 library(kableExtra)
 
+# funcao para formatar os resultados da regressao
 source("tabela_regressao.R")
 
+
+# limites para o grafico e construcao do conjunto de dados
 minimo <- -5
 maximo <- 5
 passo  <- 0.1
