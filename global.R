@@ -1,11 +1,20 @@
 library(shiny)
 library(ggplot2)
 library(dplyr)
+library(knitr)
+library(kableExtra)
 
-x <- seq(from=-5, to=5, by=0.15)
-y <- seq(from=-5, to=5, by=0.15)
+source("tabela_regressao.R")
+
+minimo <- -5
+maximo <- 5
+passo  <- 0.1
+
+x <- seq(from=minimo, to=maximo, by=passo)
+y <- seq(from=minimo, to=maximo, by=passo)
 
 data <- expand.grid(x, y)
 
 names(data) <- c("x", "y")
+
 
