@@ -36,8 +36,7 @@ function(input, output) {
   
   # muda os pontos clicados
   observeEvent(input$plot1_click, {
-    res <- nearPoints(data, input$plot1_click, allRows = TRUE, maxpoints=1)
-    
+    res           <- nearPoints(data, input$plot1_click, allRows = TRUE, maxpoints=1)
     vals$keeprows <- xor(vals$keeprows, res$selected_)
   })
   
