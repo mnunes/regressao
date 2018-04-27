@@ -1,15 +1,17 @@
 function(input, output) {
   
-  # For storing which rows have been excluded
+  # variavel que guarda os pontos excluídos e mantidos
   vals <- reactiveValues(
     keeprows = rep(FALSE, nrow(data))
   )
   
   output$plot1 <- renderPlot({
-    # Plot the kept and excluded points as two separate data sets
+    
+    # plota os pontos keep e exclude como dois data frames diferentes
     keep    <- data[ vals$keeprows, , drop = FALSE]
     exclude <- data[!vals$keeprows, , drop = FALSE]
     
+    # grafico de dispersao e reta ajustada aos dados
     ggplot(keep, aes(x=x, y=y)) + 
       geom_point() +
       geom_smooth(method = lm, se = FALSE, color = "black") +
@@ -21,27 +23,28 @@ function(input, output) {
 
   })
   
+  # ajusta o modelo aos dados keep
   model <- reactive({
     keep    <- data[ vals$keeprows, , drop = FALSE]
     lm(y ~ x, data = keep)
   })
   
+  # cria a tabela com os resultados da regressao
   output$model <- renderPrint({
     tabela_regressao(model())
   })
   
-  # Toggle points that are clicked
+  # muda os pontos clicados
   observeEvent(input$plot1_click, {
     res <- nearPoints(data, input$plot1_click, allRows = TRUE, maxpoints=1)
     
     vals$keeprows <- xor(vals$keeprows, res$selected_)
   })
   
-  # Reset all points
+  # apaga todos os pontos
   observeEvent(input$exclude_reset, {
     vals$keeprows <- rep(FALSE, nrow(data))
   })
-  
 
   
 }
