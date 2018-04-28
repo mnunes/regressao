@@ -1,5 +1,7 @@
 library(shiny)
+library(shinythemes)
 library(ggplot2)
+theme_set(theme_bw())
 library(dplyr)
 library(knitr)
 library(ggfortify)
@@ -7,7 +9,6 @@ library(kableExtra)
 
 # funcao para formatar os resultados da regressao
 source("tabela_regressao.R")
-
 
 # limites para o grafico e construcao do conjunto de dados
 minimo <- -5

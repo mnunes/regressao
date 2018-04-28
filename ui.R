@@ -1,9 +1,11 @@
-fluidPage(
-  
+# layout
 
-    
+navbarPage(title="Regressão Linear Interativa",
+
+fluidPage(theme = shinytheme("cosmo"),
   mainPanel(
     tabsetPanel(type = "tabs",
+                selected = "Regressão",
                 
                 # aba com o grafico e tabela de regressao
                 tabPanel("Regressão",
@@ -34,3 +36,4 @@ fluidPage(
 )
 )
 
+)

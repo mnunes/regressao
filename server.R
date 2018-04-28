@@ -16,10 +16,9 @@ function(input, output) {
       geom_point() +
       geom_smooth(method = lm, se = FALSE, color = "black") +
       geom_point(data = exclude, fill = NA, color = "black", alpha = 0.00) +
-      coord_cartesian(xlim = 0.8*c(minimo, maximo), ylim = 0.8*c(minimo, maximo)) +
+      coord_cartesian(xlim = 0.8*c(minimo, maximo), ylim = 0.8*c(minimo, maximo)) #+
       #scale_x_continuous(breaks=seq(minimo, maximo, 1), minor_breaks=seq(minimo, maximo, passo)) +
-      #scale_y_continuous(breaks=seq(minimo, maximo, 1), minor_breaks=seq(minimo, maximo, passo)) +
-      theme_bw()
+      #scale_y_continuous(breaks=seq(minimo, maximo, 1), minor_breaks=seq(minimo, maximo, passo))
 
   })
   
@@ -32,7 +31,11 @@ function(input, output) {
   
   # cria a tabela com os resultados da regressao
   output$model <- renderPrint({
-    tabela_regressao(model())
+    if (sum(vals$keeprows) >= 2){
+      tabela_regressao(model())
+    } else {
+      "Mais pontos são necessários"
+    }
   })
   
   # muda os pontos clicados
@@ -49,10 +52,19 @@ function(input, output) {
   # graficos de diagnostico
   output$plot2 <- renderPlot({
     
-    # grafico de dignostico
-    autoplot(model()) +
-      theme_bw()
-    
+    # condicional para evitar um erro;
+    # os graficos de diagnostico necessitam
+    # de pelo menos 3 pontos para serem
+    # criados
+    if (sum(vals$keeprows) >= 3){
+      autoplot(model())
+    } else {
+      mensagem <- data.frame(x=0, y=0)
+      ggplot(mensagem, aes(x=x, y=y, label="Mais pontos são necessários")) +
+        geom_text(size = 10) +
+        coord_cartesian(xlim = 0.8*c(minimo, maximo), ylim = 0.8*c(minimo, maximo))
+        
+    }
   })
   
 }
