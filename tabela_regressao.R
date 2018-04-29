@@ -1,3 +1,5 @@
+# funcao para criar a tabela da regressao
+
 tabela_regressao <- function(ajuste){
 
   lm_traducao <- function(ajuste){
