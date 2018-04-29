@@ -12,13 +12,22 @@ function(input, output) {
     exclude <- data[!vals$keeprows, , drop = FALSE]
     
     # grafico de dispersao e reta ajustada aos dados
+    
+    if (sum(vals$keeprows) >= 2){
     ggplot(keep, aes(x=x, y=y)) + 
       geom_point() +
       geom_smooth(method = lm, se = FALSE, color = "black") +
       geom_point(data = exclude, fill = NA, color = "black", alpha = 0.00) +
-      coord_cartesian(xlim = 0.8*c(minimo, maximo), ylim = 0.8*c(minimo, maximo)) #+
-      #scale_x_continuous(breaks=seq(minimo, maximo, 1), minor_breaks=seq(minimo, maximo, passo)) +
-      #scale_y_continuous(breaks=seq(minimo, maximo, 1), minor_breaks=seq(minimo, maximo, passo))
+      coord_cartesian(xlim = 0.8*c(minimo, maximo), ylim = 0.8*c(minimo, maximo)) +
+      labs(x="X", y="Y", title=paste("Y = ", sprintf("%0.4f", coefficients(model())[1]), sprintf("%+0.4f", coefficients(model())[2]), "*X", ", R^2 = ", round(summary(model())$r.squared, digits=4), sep=""))
+    } else {
+      ggplot(keep, aes(x=x, y=y)) + 
+        geom_point() +
+        geom_smooth(method = lm, se = FALSE, color = "black") +
+        geom_point(data = exclude, fill = NA, color = "black", alpha = 0.00) +
+        coord_cartesian(xlim = 0.8*c(minimo, maximo), ylim = 0.8*c(minimo, maximo)) +
+        labs(x="X", y="Y", title="Adicione mais pontos ao gráfico")
+      }
 
   })
   
