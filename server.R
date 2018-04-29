@@ -83,7 +83,9 @@ function(input, output) {
   
   # cria a tabela com os resultados da anova da regressao
   output$dados <- renderPrint({
+    if (sum(vals$keeprows) >= 1){
       tabela_dados(data[ vals$keeprows, , drop = FALSE])
+    }
     }
   )
   

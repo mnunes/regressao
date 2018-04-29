@@ -9,7 +9,7 @@ sidebarLayout(position="left",
     h2("Explore o modelo de regressão linear"),
     p("Esta ferramenta interativa permite que pontos sejam colocados no gráfico à direita, a fim de que uma reta seja ajustada a eles. Expemimente colocar ao menos dois pontos no gráfico e veja o resultado."),
     p("Perceba que há algumas abas acima do gráfico. Estas abas permitem que os gráficos de diagnóstico do modelo sejam checados e que os dados criados sejam baixados para serem utilizados posteriormente. Assim, é possível criar interativamente conjuntos de dados com características específicas, como pontos de influência, heterocedasticidade e demais problemas que podem surgir em análise de modelos de regressão linear."),
-    p("Aplicativo desenvolvido por", a("Marcus Nunes", href="http://marcusnunes.me/", target="_blank"), ". O código está disponível", a("no githb", href="https://github.com/mnunes/regressao/", target="_blank"), ".")
+    p("Aplicativo desenvolvido por", a("Marcus Nunes", href="http://marcusnunes.me/", target="_blank"), ". O código está disponível", a("no github", href="https://github.com/mnunes/regressao/", target="_blank"), ".")
   ),
            
   # painel central
@@ -47,8 +47,7 @@ sidebarLayout(position="left",
                 
                 # aba com os dados
                 tabPanel("Dados",
-                         tableOutput("dados"),
-                         rownames=FALSE
+                         tableOutput("dados")
                          )
                          
     )
