@@ -33,10 +33,15 @@ function(input, output) {
   output$model <- renderPrint({
     if (sum(vals$keeprows) >= 2){
       tabela_regressao(model())
-    } else {
-      "Mais pontos são necessários"
     }
   })
+  
+  # cria a tabela com os resultados da anova da regressao
+  output$anova <- renderPrint({
+    if (sum(vals$keeprows) >= 2){
+      tabela_anova(model())
+    }
+  })  
   
   # muda os pontos clicados
   observeEvent(input$plot1_click, {
@@ -66,5 +71,11 @@ function(input, output) {
         
     }
   })
+  
+  # cria a tabela com os resultados da anova da regressao
+  output$dados <- renderPrint({
+      tabela_dados(data[ vals$keeprows, , drop = FALSE])
+    }
+  )
   
 }
