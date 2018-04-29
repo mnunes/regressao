@@ -28,7 +28,9 @@ sidebarLayout(position="left",
                                   ),
                        actionButton("exclude_reset", "Reset")
                        ),
-                tableOutput("model")
+                tableOutput("model"), 
+                p(" "),
+                tableOutput("anova")
                 ),
                 
                 # aba com os resultados do diagnóstico
@@ -41,9 +43,19 @@ sidebarLayout(position="left",
                                            )
                                 )
                          )
-                )
+                ), 
+                
+                # aba com os dados
+                tabPanel("Dados",
+                         tableOutput("dados"),
+                         rownames=FALSE
+                         )
+                         
+    )
+                         
+                         
     )
 )
 )
 
-)
+
