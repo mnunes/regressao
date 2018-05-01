@@ -2,7 +2,7 @@
 
 ## Resumo
 
-Este repositório possui os arquivos necessários para rodar o aplicativo [Regressão Linear Interativa](http://shiny.estatistica.ufrn.br/regressao_linear_interativa/). Basta baixar os arquivos para rodar o aplicativo localmente em seu computador ou [clicar neste link](http://shiny.estatistica.ufrn.br/regressao_linear_interativa/) para ver o aplicativo em funcionamento.
+Este repositório possui os arquivos necessários para rodar o aplicativo [Regressão Linear Interativa](http://shiny.estatistica.ccet.ufrn.br/regressao_linear_interativa/). Basta baixar os arquivos para rodar o aplicativo localmente em seu computador ou [clicar neste link](http://shiny.estatistica.ccet.ufrn.br/regressao_linear_interativa/) para ver o aplicativo em funcionamento.
 
 
 
