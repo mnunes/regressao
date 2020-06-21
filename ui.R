@@ -46,7 +46,7 @@ sidebarLayout(position="left",
                 ), 
                 
                 # aba com os dados
-                tabPanel("Dados",
+                tabPanel("Marcus",
                          tableOutput("dados")
                          )
                          
