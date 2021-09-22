@@ -15,16 +15,16 @@ function(input, output) {
     
     if (sum(vals$keeprows) >= 2){
     ggplot(keep, aes(x=x, y=y)) + 
-      geom_point() +
-      geom_smooth(method = lm, se = FALSE, color = "black") +
-      geom_point(data = exclude, fill = NA, color = "black", alpha = 0.00) +
+      geom_point(colour = "#568DBA") +
+      geom_smooth(method = lm, se = FALSE, color = "#3DAF85") +
+      geom_point(data = exclude, fill = NA, color = "#568DBA", alpha = 0.00) +
       coord_cartesian(xlim = 0.8*c(minimo, maximo), ylim = 0.8*c(minimo, maximo)) +
       labs(x="X", y="Y", title=paste("Y = ", sprintf("%0.4f", coefficients(model())[1]), sprintf("%+0.4f", coefficients(model())[2]), "*X", ", R^2 = ", round(summary(model())$r.squared, digits=4), sep=""))
     } else {
       ggplot(keep, aes(x=x, y=y)) + 
-        geom_point() +
-        geom_smooth(method = lm, se = FALSE, color = "black") +
-        geom_point(data = exclude, fill = NA, color = "black", alpha = 0.00) +
+        geom_point(colour = "#568DBA") +
+        geom_smooth(method = lm, se = FALSE, colour = "#3DAF85") +
+        geom_point(data = exclude, fill = NA, colour = "#568DBA", alpha = 0.00) +
         coord_cartesian(xlim = 0.8*c(minimo, maximo), ylim = 0.8*c(minimo, maximo)) +
         labs(x="X", y="Y", title="Adicione mais pontos ao gráfico")
       }
@@ -71,11 +71,11 @@ function(input, output) {
     # de pelo menos 3 pontos para serem
     # criados
     if (sum(vals$keeprows) >= 3){
-      autoplot(model())
+      check_model(model(), check = c("linearity", "qq", "homogeneity", "outliers"))
     } else {
       mensagem <- data.frame(x=0, y=0)
       ggplot(mensagem, aes(x=x, y=y, label="Mais pontos são necessários")) +
-        geom_text(size = 10) +
+        geom_text(size = 10, colour = "#568DBA") +
         coord_cartesian(xlim = 0.8*c(minimo, maximo), ylim = 0.8*c(minimo, maximo))
         
     }

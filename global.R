@@ -1,11 +1,11 @@
 library(shiny)
 library(shinythemes)
 library(ggplot2)
-theme_set(theme_bw())
+theme_set(see::theme_lucid())
 library(dplyr)
 library(knitr)
-options(knitr.kable.NA="")
-library(ggfortify)
+options(knitr.kable.NA = "")
+library(performance)
 library(kableExtra)
 
 # funcoes para formatar os resultados da regressao
